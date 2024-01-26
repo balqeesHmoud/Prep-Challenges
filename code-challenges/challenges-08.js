@@ -56,6 +56,7 @@ const customerAndAge = (obj) => {
 //
 // Note:
 // You can solve this challenge by using Object.entries
+
 const getEntries = (obj) => {
   let result = [];
   for (const [key, value] of Object.entries(obj)) {
