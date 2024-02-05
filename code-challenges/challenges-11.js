@@ -60,7 +60,7 @@ function square(arr) {
 
 function fullName(arr) {
     // write your code here
-    const mapArr=arr.map(ele=> ele=`${ele.firstName} ${ele.lastName}`)
+    const mapArr=arr.map(ele=>ele=`${ele.firstName} ${ele.lastName}`)
     return mapArr;
 }
 // -------------------------------------------------------------------------------------------------------
