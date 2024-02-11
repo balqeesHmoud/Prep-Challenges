@@ -69,7 +69,7 @@ const stringReverse = (str) => {
     str = str.split(' ')
     let newStr = str.reduce((acc, ele) => {
         return ele+ ' ' + acc
-    }, '')
+    },)
     return newStr
 }
 // -------------------------------------------------------------------------------------------------------
