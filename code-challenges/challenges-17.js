@@ -14,17 +14,13 @@
 // Output: [50, 41, 32, 23, 14, 5, -4, 5, 14, 23, 32, 41, 50]
 //
 
-const iterationPattern = (int1, int2) => {
-    const pattern = [];
-    
-    while (int1 > 0) {
-        pattern.push(int1);
-        int1 = (int1 > int2) ? int1 - int2 : int1 + int2;
+const recursionPattern = (int1, int2) => {
+    if (int1 < 0) {
+        return [int1];
     }
-    
-    return pattern;
-};
 
+    return [int1, ...recursionPattern(int1 - int2, int2), int1];
+}
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
@@ -43,17 +39,15 @@ const iterationPattern = (int1, int2) => {
 
 const filterLinks = (str) => {
     const regex = /href="([^"]+)"/;
-    const match = str.match(regex);
-
-    if (match) {
-        const url = match[1];
-        const domainMatch = url.match(/(?:https?:\/\/)?(?:www\.)?([^\/:]+)/);
-        return domainMatch ? `www.${domainMatch[1]}` : null;
-    } else {
-        return null;
+    const match = regex.test(str);
+    if (!match) {
+      return null;
     }
-};
-// -------------------------------------------------------------------------------------------------------
+    const link = regex.exec(str)[1];
+    const protocolIndex = link.indexOf('://');
+    return link.slice(protocolIndex + 3);
+  }
+  // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
 // Challenge 03:
@@ -67,16 +61,13 @@ const filterLinks = (str) => {
 // Input: s = "A man, a plan, a canal: Panama"
 // Output: true
 // as you can see "amanaplanacanalpanama" is a palindrome.
-//
 
 const isPalindrome = (str) => {
-    const isPalindrome = (str) => {
-      const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const reversedStr = cleanedStr.split('').reverse().join('');
-      return cleanedStr === reversedStr;
-    };
-    return isPalindrome(str);
-  }; 
+    const cleanedStr = str.replace(/[^a-z0-9]/gi, '').toLowerCase();
+    
+    return cleanedStr === cleanedStr.split('').reverse().join('');
+}
+// -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
 // Challenge 04:
